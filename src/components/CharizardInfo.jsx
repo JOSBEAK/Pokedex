@@ -7,14 +7,9 @@ import { Grid } from "@mui/material";
 
 const CharizardInfo = () => {
   return (
-    <Grid container className="justify-between">
+    <Grid container spacing={2}>
       {/* Grid 1 */}
-      <Grid
-        item
-        xs={12}
-        lg={5.5}
-        className="flex-grow flex justify-between items-center"
-      >
+      <Grid item xs={12} lg={5.5}>
         <div className="text-white">
           <p className="text-2xl font-bold">#006</p>
           <div className="flex pt-3 pb-3">
@@ -27,8 +22,8 @@ const CharizardInfo = () => {
               <p className="ml-2 mr-2"> Flying</p>
             </div>
           </div>
-          <div className="w-[75%]">
-            <p className="text-7xl font-extrabold">CHARIZARD</p>
+          <div className="">
+            <p className="text-4xl font-extrabold">CHARIZARD</p>
             <p className="pt-2 pb-2">
               Charizard resembles a large traditional European dragon. Despite
               the similarity, Charizard is explicitly a Fire and Flying-type
@@ -44,14 +39,19 @@ const CharizardInfo = () => {
       </Grid>
 
       {/* Grid 2 */}
-      <Grid item xs={0} lg={1} className="hidden sm:block w-full relative ">
-        <div className="flex flex-col justify-between items-center mt-[60%]">
+      <Grid
+        item
+        xs={12}
+        lg={1}
+        className="hidden lg:flex items-center justify-center"
+      >
+        <div className="flex flex-col justify-between items-center mt-20">
           <div className="bg-gradient-to-b from-transparent to-white h-52 w-0.5 mx-auto " />
 
           <img
             src={FireDivider}
             alt="fire divider"
-            className="w-30 h-30 pt-1 pb-1"
+            className="w-[60%]  pt-1 pb-1"
           />
 
           <div className="bg-gradient-to-b from-white to-transparent h-52 w-0.5 mx-auto "></div>
@@ -59,9 +59,9 @@ const CharizardInfo = () => {
       </Grid>
 
       {/* Grid 3 */}
-      <Grid item xs={12} lg={5.5} className="hidden lg:block w-full relative">
-        <div>
-          <img src={CharizardImg} alt="charizard" />
+      <Grid item xs={12} lg={5.5}>
+        <div className="flex justify-center ">
+          <img src={CharizardImg} alt="charizard" className="w-full" />
         </div>
       </Grid>
     </Grid>

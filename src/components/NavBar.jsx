@@ -1,10 +1,9 @@
-import { styled, alpha } from "@mui/material/styles";
+import { styled, alpha, useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-
 import InputBase from "@mui/material/InputBase";
-
 import SearchIcon from "@mui/icons-material/Search";
 import { Home } from "@mui/icons-material";
 import { useState } from "react";
@@ -27,7 +26,6 @@ const Search = styled("div")(({ theme }) => ({
 const SearchIconWrapper = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 2),
   height: "100%",
-
   position: "absolute",
   pointerEvents: "none",
   display: "flex",
@@ -40,7 +38,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   width: "100%",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     [theme.breakpoints.up("sm")]: {
@@ -75,8 +72,7 @@ const getTypeColor = (type) => {
     fairy: "bg-fairy",
   };
 
-  // Return the corresponding background color class for the given type
-  return typeColors[type.toLowerCase()] || "bg-gray-400"; // Default to gray if type is not found
+  return typeColors[type.toLowerCase()] || "bg-gray-400";
 };
 
 export default function NavBar({ handleSearch }) {
@@ -103,12 +99,15 @@ export default function NavBar({ handleSearch }) {
     "Fairy",
   ];
 
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box flexGrow={1}>
       <AppBar position="static" sx={{ backgroundColor: "rgb(6, 11, 40)" }}>
-        <div className=" p-4">
+        <div className="p-4 flex flex-col justify-center items-center">
           <button
-            className="p-2 px-4 w-[8%] rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 text-white flex justify-center items-center"
+            className="p-2 px-4 lg:w-[8%] xs:w-[20%] rounded-lg bg-gradient-to-br from-gray-700 to-gray-900 text-white flex justify-center items-center"
             style={{
               boxShadow: "-7px -7px 15px #0e0e0f, 7px 7px 15px #36363d",
             }}
@@ -123,7 +122,13 @@ export default function NavBar({ handleSearch }) {
 
           <Toolbar className="flex flex-col">
             <p className="font-black text-3xl mr-4 p-2">Search By Type</p>
-            <div className="flex overflow-x-auto space-x-2">
+            <div
+              className={
+                isSmallScreen
+                  ? "flex flex-wrap"
+                  : "flex overflow-x-auto space-x-2"
+              }
+            >
               {typesArray.map((item, index) => (
                 <button
                   key={index}
